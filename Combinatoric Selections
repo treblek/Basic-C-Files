@@ -1,0 +1,34 @@
+#include "stdio.h"
+double perm(unsigned int n,unsigned int r);
+double fact(unsigned int num);
+int main(void)
+{
+	unsigned int r,n;int totPerm=0;
+	for(n =1;n<=100;n++)
+	{
+		
+		for(r=1;r<=n;r++)
+		{
+			printf("%ld\n",perm(n,r));
+			if(perm(n,r)>1000000)
+			{
+				totPerm++;
+			}
+		}
+	}
+	printf("%u",totPerm);
+	return -1;
+}
+
+double perm(unsigned int n,unsigned int r)
+{
+	return fact(n)/(fact(n-r)*fact(r));
+}
+
+double fact(unsigned int num)
+{
+	double res=1;
+	for(unsigned int i =2;i<=num;i++)
+	res*=i;
+	return res;
+}
