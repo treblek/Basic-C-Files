@@ -1,0 +1,62 @@
+#include "stdio.h"
+#include "stdint.h"
+#include "stdlib.h"
+#include "string.h"
+typedef struct
+{
+	char *sokak_;
+	char *apartman_adi_;
+	uint16_t daire_numarasi_;
+	char *sehir_;
+}adres_;
+
+typedef struct
+{
+	char *isim_;
+	char *kimlik_no_;
+	adres_ _adres_;
+}insan_;
+
+void bilgileriAl(insan_ *);
+void yazdir(insan_);
+int main(void)
+{
+	insan_ ahmet;
+	bilgileriAl(&ahmet);
+	yazdir(ahmet);
+	return -1;
+}
+
+void yazdir(insan_ insan)
+{
+	system("cls");
+	printf("Isim soyisim : %s",insan.isim_);
+	printf("\nAdres: %s sokak %s apartmani No: %d daire %s",insan._adres_.sokak_,insan._adres_.apartman_adi_,insan._adres_.daire_numarasi_,insan._adres_.sehir_);
+}
+
+void bilgileriAl(insan_ *insan)
+{
+	char degisken[20];
+	printf("isim");
+	gets(degisken);
+	insan->isim_ = (char*)malloc(sizeof(char)*(sizeof(degisken))+1);
+	strcpy(insan->isim_,degisken);
+	printf("kimlik no:");
+		gets(degisken);
+	insan->kimlik_no_ = (char*)malloc(sizeof(char)*sizeof(degisken)+1);
+	strcpy(insan->kimlik_no_,degisken);
+	printf("sehir");
+		gets(degisken);
+	insan->_adres_.sehir_ = (char*)malloc(sizeof(char)*sizeof(degisken)+1);
+	strcpy(insan->_adres_.sehir_,degisken);
+    printf("sokak");
+    		gets(degisken);
+	insan->_adres_.sokak_ = (char*)malloc(sizeof(char)*sizeof(degisken)+1);
+	strcpy(insan->_adres_.sokak_,degisken);
+    printf("apartman");	
+    	gets(degisken);
+	insan->_adres_.apartman_adi_ = (char*)malloc(sizeof(char)*sizeof(degisken)+1);
+	strcpy(insan->_adres_.apartman_adi_,degisken);
+	printf("daire no:");
+		scanf("%d",&insan->_adres_.daire_numarasi_);
+}
